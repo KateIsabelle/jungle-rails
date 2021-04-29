@@ -12,9 +12,11 @@
   <% @line_item.each do |item| %>
       <%= render 'line_item', line_item: item[:line_item] %>
   <% end %> 
-
-  <div>Total: <%= total %></div>
-
+  <br>
+  <div>Total: <%= humanized_money_with_symbol @order.total_cents / 100.0 %></div>
+  <br>
+  <div>Email: <%= @order.email %></div>
+  <br>
   <%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-primary' %>
 
 </section>
