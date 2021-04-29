@@ -2,7 +2,10 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    # @line_item = LineItem.where(order_id: params[:order_id])
+    @line_item ||= LineItem.where(order_id: @order.id).map {|line_item| { line_item:line_item } }
   end
+
 
   def create
     charge = perform_stripe_charge
