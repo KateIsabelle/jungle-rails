@@ -1,3 +1,14 @@
-<p>Hellooooooooooo</p>
-      <h4><%= line_item.product_id %></h4>
-      <p><%= line_item.quantity %></p>
+<% if line_item.product_id %>
+
+  <% product = Product.find(line_item.product_id) %>
+
+  <h4><%= line_item.product_id %></h4>
+  <p>Quantity: <%= line_item.quantity %></p>
+  <p><%= product.name %></p>
+  <p>Price: <%= product.price * line_item.quantity %></p>
+  <%= image_tag product.image.thumb, alt: product.name %>
+  
+  <p><%= product.description %></p>
+
+
+<% end %>
