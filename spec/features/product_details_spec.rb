@@ -23,7 +23,7 @@ RSpec.feature "Visitor clicks product on home page and navigates to product deta
     sleep 5
     
     # DEBUG 
-    save_screenshot
+    # save_screenshot
 
     # VERIFY
     expect(page).to have_css('.products-show')
