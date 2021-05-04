@@ -60,5 +60,14 @@ RSpec.describe User, type: :model do
       end
     end
 
+    context "given password with less than 8 characters" do
+      it "does not save and has error 'Password confirmation can't be blank'" do
+        @user = User.create(first_name: "Kato", last_name: "Potato", email: "kato@email.ca", password: "1234567", password_confirmation: "1234567")
+        # puts "Min Password Error: #{@user.errors.full_messages}"
+        expect(User.count).to eq(0)
+        expect(@user.errors.full_messages).to include(/Password is too short/i)
+      end
+    end
+
   end
 end
