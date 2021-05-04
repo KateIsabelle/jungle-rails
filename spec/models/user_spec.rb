@@ -70,4 +70,48 @@ RSpec.describe User, type: :model do
     end
 
   end
+
+  describe '.authenticate_with_credentials' do
+    context "given matching user email and password" do
+      it "returns an instance of the user" do
+        @user = User.create(first_name: "Kato", last_name: "Potato", email: "kato@email.ca", password: "password", password_confirmation: "password")
+        user = User.authenticate_with_credentials("kato@email.ca", "password")
+        expect(user).to eq(@user)
+      end
+    end
+
+    context "given email that does not exist" do
+      it "returns nil" do
+        @user = User.create(first_name: "Kato", last_name: "Potato", email: "kato@email.ca", password: "password", password_confirmation: "password")
+        user = User.authenticate_with_credentials("potato@email.ca", "password")
+        expect(user).to be nil 
+      end
+    end
+
+    context "given incorrect password for existing email" do
+      it "returns nil" do
+        @user = User.create(first_name: "Kato", last_name: "Potato", email: "kato@email.ca", password: "password", password_confirmation: "password")
+        user = User.authenticate_with_credentials("kato@email.ca", "wrongpassword")
+        expect(user).to be nil 
+      end
+    end
+
+    context "given email with white space around it" do
+      it "returns an instance of the user" do
+        @user = User.create(first_name: "Kato", last_name: "Potato", email: "kato@email.ca", password: "password", password_confirmation: "password")
+        user = User.authenticate_with_credentials("     kato@email.ca    ", "password")
+        expect(user).to eq(@user)
+      end
+    end
+
+    context "given existing email with wrong casing" do
+      it "returns an instance of the user" do
+        @user = User.create(first_name: "Kato", last_name: "Potato", email: "kato@email.ca", password: "password", password_confirmation: "password")
+        user = User.authenticate_with_credentials("KATO@email.ca", "password")
+        expect(user).to eq(@user)
+      end
+    end
+
+  end
+
 end
