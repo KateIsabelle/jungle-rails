@@ -11,8 +11,8 @@ A mini e-commerce application built with Rails 4.2
 - A simulation of the real world where feature and bug-fix requests are listed instead of step-by-step instructions on how to implement a solution
 
 ## Final Product
-!["Screenshot of products landing page"]()
-!["Screenshot of my cart"]()
+!["Screenshot of products landing page"](https://github.com/KateIsabelle/jungle-rails/blob/master/docs/jungle-rails-landing-page.png?raw=true)
+!["Screenshot of my cart"](https://github.com/KateIsabelle/jungle-rails/blob/master/docs/jungle-rails-cart.png?raw=true)
 
 ## Dependencies
 
